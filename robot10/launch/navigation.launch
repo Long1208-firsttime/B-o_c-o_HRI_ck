@@ -1,0 +1,11 @@
+<launch>
+  <!-- Load map -->
+  <node name="map_server" pkg="map_server" type="map_server"
+        args="$(find robot10)/map/restaurant.yaml" />
+
+  <!-- Localization -->
+  <include file="$(find robot10)/launch/amcl.launch" />
+
+  <!-- Navigation -->
+  <include file="$(find robot10)/launch/move_base.launch" />
+</launch>

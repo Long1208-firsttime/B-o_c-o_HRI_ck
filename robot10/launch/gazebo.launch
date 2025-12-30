@@ -1,0 +1,73 @@
+<launch>
+
+  <!-- ========================================= -->
+  <!-- 1. CẤU HÌNH MÔI TRƯỜNG & GAZEBO -->
+  <!-- ========================================= -->
+  
+  <!-- Gazebo model path -->
+  <env name="GAZEBO_MODEL_PATH"
+       value="$(find robot10):$(optenv GAZEBO_MODEL_PATH)"/>
+
+  <!-- Launch Gazebo với world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find robot10)/world/restaurant.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+
+  <!-- ========================================= -->
+  <!-- 2. SPAWN ROBOT -->
+  <!-- ========================================= -->
+
+  <!-- Robot description -->
+  <param name="robot_description"
+         textfile="$(find robot10)/urdf/robot10.urdf"/>
+
+  <!-- Spawn robot tại vị trí mong muốn -->
+  <node name="spawn_model"
+        pkg="gazebo_ros"
+        type="spawn_model"
+        output="screen"
+        args="-urdf 
+              -param robot_description 
+              -model robot10
+              -x -14.498122
+              -y 3.555394
+              -z 0.1
+              -Y 1.57"/>
+
+  <!-- Publish TF -->
+  <node pkg="robot_state_publisher"
+        type="robot_state_publisher"
+        name="robot_state_publisher"/>
+
+  <node pkg="joint_state_publisher"
+        type="joint_state_publisher"
+        name="joint_state_publisher"/>
+
+  <!-- ========================================= -->
+  <!-- 3. NAVIGATION STACK (THÊM MỚI) -->
+  <!-- ========================================= -->
+  <!-- Gọi file navigation.launch nằm trong thư mục launch của package robot10 -->
+  <include file="$(find robot10)/launch/navigation.launch"/>
+
+  <!-- ========================================= -->
+  <!-- 4. GIAO DIỆN PHỤC VỤ (THÊM MỚI) -->
+  <!-- ========================================= -->
+  <!-- Chạy file serving.py nằm trong thư mục scripts -->
+  <!-- output="screen" giúp in print() ra terminal -->
+  <node pkg="robot10" 
+        type="serving.py" 
+        name="serving_ui_node" 
+        output="screen"/>
+
+  <!-- ========================================= -->
+  <!-- 5. RVIZ -->
+  <!-- ========================================= -->
+  <node pkg="rviz"
+        type="rviz"
+        name="rviz"
+        args="-d $(find robot10)/rviz/robot10.rviz"
+        required="true"/>
+
+</launch>

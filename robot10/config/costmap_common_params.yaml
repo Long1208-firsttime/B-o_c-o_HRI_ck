@@ -1,0 +1,12 @@
+obstacle_range: 2.5    # Giảm xuống chút cho nhẹ tải nếu robot chạy chậm (tùy chọn)
+raytrace_range: 3.0
+# SỬA LỖI: Dấu chấm thay vì dấu phẩy
+footprint: [[0.3, 0.3], [0.3, -0.3], [-0.3, -0.3], [-0.3, 0.3]]  
+
+# SỬA LỖI: Tăng lên để bao trùm kích thước robot (0.3)
+inflation_radius: 0.55 
+
+observation_sources: scan
+scan: {data_type: LaserScan, topic: /scan, marking: true, clearing: true, expected_update_rate: 0.0} 
+# Note: expected_update_rate: 0.0 để tắt cảnh báo nếu mạng lag, 
+# hoặc để 0.4 như cũ cũng được nhưng không cần thiết lắm.

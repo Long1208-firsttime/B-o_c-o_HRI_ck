@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="robot10">
+
+  <!-- Base footprint cho navigation/odometry -->
+  <link name="base_footprint"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.046181 9.8795E-06 0.46471" rpy="0 0 0" />
+      <mass value="178.32" />
+      <inertia ixx="21.786" ixy="-0.00012267" ixz="2.0934"
+               iyy="20.297" iyz="0.00014782" izz="6.0392" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Right Arm -->
+  <link name="vai_phai">
+    <inertial>
+      <origin xyz="0.0126580061853205 0.00265931175498668 0.0289749706404558" rpy="0 0 0" />
+      <mass value="0.192955081711892" />
+      <inertia ixx="0.000192906979362119" ixy="6.49387659502792E-06" ixz="-2.23472154063851E-05"
+               iyy="0.000163360135142605" iyz="-4.69474632985543E-06" izz="8.96349702736219E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/vai_phai.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/vai_phai.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_vai_phai" type="revolute">
+    <origin xyz="-0.0960386376771324 -0.253 0.81456789448343" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="vai_phai" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14" upper="3.14" effort="1000" velocity="1000" />
+  </joint>
+
+  <link name="tay_phai">
+    <inertial>
+      <origin xyz="-0.027380362131083 -0.0542677637478641 0.0049974646906277" rpy="0 0 0" />
+      <mass value="0.398270069509028" />
+      <inertia ixx="0.00110443447702934" ixy="-0.000445378328536928" ixz="0.000162384007186909"
+               iyy="0.000507438726421601" iyz="0.00031172290202074" izz="0.00126394964504092" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/tay_phai.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/tay_phai.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_tay_phai" type="revolute">
+    <origin xyz="0 0 0.0389999999999999" rpy="0 1.5707963267949 0" />
+    <parent link="vai_phai" />
+    <child link="tay_phai" />
+    <axis xyz="0 0.205594438061814 0.978637280629574" />
+    <limit lower="-3.14" upper="3.14" effort="1000" velocity="1000" />
+  </joint>
+
+  <!-- Left Arm -->
+  <link name="vai_trai">
+    <inertial>
+      <origin xyz="0.0118025116038498 -0.00529129927216276 0.0324970428696625" rpy="0 0 0" />
+      <mass value="0.192955044310583" />
+      <inertia ixx="0.000188869732095414" ixy="-1.20481933735818E-05" ixz="-2.08368006469879E-05"
+               iyy="0.000167397381407595" iyz="9.34164889121365E-06" izz="8.96349699171804E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/vai_trai.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/vai_trai.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="vai_trai_joint" type="revolute">
+    <origin xyz="-0.096039 0.24948 0.81457" rpy="1.5708 0 3.1416" />
+    <parent link="base_link" />
+    <child link="vai_trai" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14" upper="3.14" effort="10000" velocity="10000" />
+  </joint>
+
+  <link name="tay_trai">
+    <inertial>
+      <origin xyz="-0.0206507344442213 -0.0570432080082387 -0.0112664468209333" rpy="0 0 0" />
+      <mass value="0.398270060486136" />
+      <inertia ixx="0.00120676196831275" ixy="-0.000372922239205954" ixz="5.079480223879E-05"
+               iyy="0.000311649450196617" iyz="0.000140309761973243" izz="0.00135741134685741" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/tay_trai.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/tay_trai.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="tay_trai_joint" type="revolute">
+    <origin xyz="0.00456246393911 -0.00204546395820604 0.042522069716441" rpy="0.421459631551507 1.5707963267949 0" />
+    <parent link="vai_trai" />
+    <child link="tay_trai" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14" upper="3.14" effort="10000" velocity="10000" />
+  </joint>
+
+  <!-- Drive Wheels -->
+  <link name="banh_phai_link">
+    <inertial>
+      <origin xyz="-4.61156896984232E-18 -2.77555756156289E-17 -0.0145" rpy="0 0 0" />
+      <mass value="0.192422550032375" />
+      <inertia ixx="0.000113665603825374" ixy="-6.21019631217728E-22" ixz="1.38348714718202E-21"
+               iyy="0.000113665603825374" iyz="-6.4850960024158E-23" izz="0.000150330117212793" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/banh_phai_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/banh_phai_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="banh_phai_joint" type="continuous">
+    <origin xyz="0.0039198 -0.16 0" rpy="1.5708 0 3.1416" />
+    <parent link="base_link" />
+    <child link="banh_phai_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <link name="banh_trai_link">
+    <inertial>
+      <origin xyz="-3.64629352888475E-19 -1.38777878078145E-17 0.00349999999999986" rpy="0 0 0" />
+      <mass value="0.192422550032375" />
+      <inertia ixx="0.000113665603825374" ixy="-6.49612507724976E-22" ixz="6.36027921084214E-22"
+               iyy="0.000113665603825374" iyz="-2.05247416988808E-38" izz="0.000150330117212793" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/banh_trai_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/banh_trai_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="banh_trai_joint" type="continuous">
+    <origin xyz="0.0039198 0.171 0" rpy="1.5708 0 3.1416" />
+    <parent link="base_link" />
+    <child link="banh_trai_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- Caster Wheels - ĐÃ BỔ SUNG ĐẦY ĐỦ LINK -->
+  <link name="truoc_trai">
+    <inertial>
+      <origin xyz="0 -1.38777878078145E-17 -0.0245" rpy="0 0 0" />
+      <mass value="0.192422550032375" />
+      <inertia ixx="0.000113665603825374" ixy="4.79323592287395E-22" ixz="1.72935893397753E-22"
+               iyy="0.000113665603825374" iyz="-6.91743573591011E-22" izz="0.000150330117212793" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/truoc_trai.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/truoc_trai.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="truoc_trai_joint" type="continuous">
+    <origin xyz="0.15123 0.2 0" rpy="1.5708 0 -3.1416" />
+    <parent link="base_link" />
+    <child link="truoc_trai" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <link name="truoc_phai">
+    <inertial>
+      <origin xyz="0 -1.38777878078145E-17 0.0245" rpy="0 0 0" />
+      <mass value="0.192422550032375" />
+      <inertia ixx="0.000113665603825374" ixy="4.79323592287395E-22" ixz="1.72935893397753E-22"
+               iyy="0.000113665603825374" iyz="-6.91743573591011E-22" izz="0.000150330117212793" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/truoc_phai.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/truoc_phai.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="truoc_phai_joint" type="continuous">
+    <origin xyz="0.15123 -0.199 0" rpy="1.5708 0 -3.1416" />
+    <parent link="base_link" />
+    <child link="truoc_phai" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <link name="sau_trai">
+    <inertial>
+      <origin xyz="0 0 -0.0245" rpy="0 0 0" />
+      <mass value="0.192422550032375" />
+      <inertia ixx="0.000113665603825374" ixy="-3.28390703183552E-21" ixz="-5.18807680193258E-22"
+               iyy="0.000113665603825374" iyz="1.03761536038652E-21" izz="0.000150330117212793" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/sau_trai.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/sau_trai.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="sau_trai_joint" type="continuous">
+    <origin xyz="-0.12631 0.2 0" rpy="1.5708 0 -3.1416" />
+    <parent link="base_link" />
+    <child link="sau_trai" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <link name="sau_phai">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.192422550032375" /> <!-- Sửa mass = 0 thành giá trị hợp lý -->
+      <inertia ixx="0.000113665603825374" ixy="0" ixz="0"
+               iyy="0.000113665603825374" iyz="0" izz="0.000150330117212793" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/sau_phai.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot10/meshes/sau_phai.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="sau_phai_joint" type="continuous">
+    <origin xyz="-0.12631 -0.199 0" rpy="1.5708 0 -3.1416" />
+    <parent link="base_link" />
+    <child link="sau_phai" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- Sensors -->
+  <link name="laser_frame">
+    <visual>
+      <geometry>
+        <cylinder radius="0.05" length="0.1"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_frame"/>
+    <origin xyz="0.15 0 0.15" rpy="0 0 0"/>
+  </joint>
+
+  <link name="camera_frame">
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_frame"/>
+    <origin xyz="0.1 0 1.1" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Gazebo Plugins (giữ nguyên như trước) -->
+  <gazebo reference="camera_frame">
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>robot10/camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_frame</frameName>
+        <hackBaseline>0.07</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="laser_frame">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.1416</min_angle>
+            <max_angle>3.1416</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.5</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>laser_frame</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>base_link</bodyName>
+      <topicName>imu</topicName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>20.0</updateRate>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <updateRate>40</updateRate>
+      <leftJoint>banh_trai_joint</leftJoint>
+      <rightJoint>banh_phai_joint</rightJoint>
+      <wheelSeparation>0.331</wheelSeparation>
+      <wheelDiameter>0.075</wheelDiameter>
+      <wheelAcceleration>1.0</wheelAcceleration>
+      <wheelTorque>30</wheelTorque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <publishOdom>true</publishOdom>
+      <publishWheelTF>true</publishWheelTF>
+      <publishWheelJointState>true</publishWheelJointState>
+      <legacyMode>false</legacyMode>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="truoc_trai"><mu1>0.01</mu1><mu2>0.01</mu2></gazebo>
+  <gazebo reference="truoc_phai"><mu1>0.01</mu1><mu2>0.01</mu2></gazebo>
+  <gazebo reference="sau_trai"><mu1>0.0</mu1><mu2>0.0</mu2></gazebo>
+  <gazebo reference="sau_phai"><mu1>0.0</mu1><mu2>0.0</mu2></gazebo>
+
+</robot>
